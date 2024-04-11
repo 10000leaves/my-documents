@@ -20,7 +20,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/フロントエンドブートキャンプ/リファレンス">
-            フロントエンドブートキャンプ - 2、3人日くらい... ⏱️
+            2、3人日くらい... ⏱️
           </Link>
         </div>
       </div>
