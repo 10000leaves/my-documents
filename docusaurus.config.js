@@ -43,15 +43,19 @@ const config = {
           sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: ({docPath}) =>
+            `https://github.com/10000leaves/my-documents/tree/main/docs/${docPath}`,
+          showLastUpdateAuthor: true, // 最終更新者を表示
+          showLastUpdateTime: true, // 最終更新日を表示
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: ({blogPath}) =>
+            `https://github.com/10000leaves/my-documents/tree/main/blog/${blogPath}`,
+          blogSidebarTitle: 'All posts',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: './src/css/custom.css',
