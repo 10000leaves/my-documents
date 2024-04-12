@@ -13,7 +13,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://cs-frontend-bootcamp.netlify.app',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -93,6 +93,12 @@ const config = {
             sidebarId: 'bootCampSidebar',
             position: 'left',
             label: 'FrontEnd',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'web3Sidebar',
+            position: 'left',
+            label: 'Web3',
           },
         ],
       },
