@@ -69,12 +69,12 @@ function ohayou() {
 上記の例でも使用していますが、次のようにして、ボタンをクリックしたとき（onclick）やマウスを乗せたとき（onmouseover）などに JavaScript を実行することができます。これを、イベントハンドラと呼びます。下記の例では、Click Me!! というボタンを押したときに、Hello! というダイアログを表示します。
 
 ```html title="HTML"
-<button onClick={() => alert('button clicked!')}>Click me!</button>
+<button onClick={() => alert("button clicked!")}>Click me!</button>
 ```
 
 <hr/>
 
-<button onClick={() => alert('button clicked!')}>Click me!</button>
+<button onClick={() => alert("button clicked!")}>Click me!</button>
 
 <hr/>
 
@@ -162,7 +162,7 @@ alert("ハロー");
 
 ## 変数の書き方
 変数とは、プログラミング実行時にデータを一時的に格納しておく箱のようなものです。  
-プログラミング上は変数名といわれる固定の名前で取り扱います。変数の値はプログラム内で書き換えることができため、同じ変数でも実行途中で格納されているデータは変化します。
+プログラミング上は変数名といわれる固定の名前で取り扱います。変数の値はプログラム内で書き換えることができ、同じ変数でも実行途中で格納されているデータは変化します。
 
 以下は変数「pet」に「ネコ」を、変数「count」に「10」を設定しています。
 
@@ -180,6 +180,65 @@ alert("ハロー");
 　　　</script>
   　</body>
 </html>
+```
+
+## 変数の種類
+JavaScriptには「これは変数です」という宣言をするキーワードとして、 `const`、`let`、`var`の3つがあります。
+
+`var`はもっとも古くからある変数宣言のキーワードですが、意図しない動作を作りやすい問題が知られています。 そのため`ECMAScript 2015`で、`var`の問題を改善するために`const`と`let`という新しいキーワードが導入されました。
+
+### const
+`const`では、再代入できない変数の宣言とその変数が参照する値（初期値）を定義できます。
+
+次のように、`const`に続いて変数名を書き、代入演算子（`=`）の右辺に変数の初期値を書いて変数を定義できます。
+
+```js
+const 変数名 = 初期値;
+```
+
+次のコードでは`hello`という変数を宣言し、初期値が`こんにちは`という文字列であることを定義しています。
+
+```js
+const hello = "こんにちは";
+```
+
+### let
+`let`では、値の再代入が可能な変数を宣言できます。`let`の使い方は`const`とほとんど同じです。
+
+次のコードでは、`hello`という変数を宣言し、初期値が`こんにちは`とという文字列であることを定義しています。
+
+```js
+let hello = "こんにちは";
+```
+
+この`let`で宣言された`hello`という変数には、代入演算子（`=`）を使うことで値を代入できます。 代入演算子（`=`）の右側には変数へ代入する値を書きますが、ここでは`こんにちは`という文字列を代入しています。
+
+```js
+let hello;
+hello = "こんにちは";
+```
+
+`let`で宣言した変数に対しては何度でも値の代入が可能です。
+
+### var
+`var`では、値の再代入が可能な変数を宣言できます。`var`の使い方は`let`とほとんど同じです。
+
+```js
+var hello = "こんにちは";
+```
+
+`var`では、`let`と同じように初期値がない変数を宣言でき、変数に対して値の再代入もできます。
+
+### varの問題
+`var`は`let`とよく似ていますが、`var`には同じ名前の変数を再定義できてしまう問題があります。
+
+`let`や`const`では、同じ名前の変数を再定義しようとすると、構文エラー（`SyntaxError`）が発生します。 そのため、間違えて変数を二重に定義してしまうというミスを防ぐことができます。
+
+```js
+// "x"という変数名で変数を定義する
+let x;
+// 同じ名前の変数"x"を定義するとSyntaxErrorとなる
+let x; // => SyntaxError: redeclaration of let x
 ```
 
 ## 条件分岐の書き方（if文など）
@@ -269,11 +328,11 @@ alert("ハロー");
                 console.log("Hello!" + name);
             }
             // 引数に「tanaka」を指定して関数helloを実行する
-            hello('tanaka');
+            hello("tanaka");
             // 引数に「sato」を指定して関数helloを実行する
-            hello('sato');
+            hello("sato");
            // 引数に「yamada」を指定して関数helloを実行する
-            hello('yamada');
+            hello("yamada");
         </script>
     </body>
 </html>
@@ -296,7 +355,7 @@ alert("ハロー");
                 return "Hello!" + name;
             }
    　       // 関数helloの戻り値を受け取る
-            message = hello('tanaka');
+            message = hello("tanaka");
             // コンソールに変数messageの値を表示する
             console.log(message);
         </script>
@@ -324,7 +383,7 @@ console.log(ary.length);
 // => 0
 // 初期化する際に値をあらかじめ指定する場合には , で値を区切ります。
 
-const ary = ['文字です', 100, true, new Date];
+const ary = ["文字です", 100, true, new Date];
 // 配列の要素にアクセスする際には数字を使います。最初が0なので注意してください。
 
 console.log(ary.length);
@@ -338,37 +397,37 @@ console.log(ary[0]);
 既存の配列に値を追加する際には `push` メソッドを使います。 `push` は一番最後に追加します。
 
 ```js
-const ary = ['文字です', 100, true, new Date];
-ary.push('新しい値');
+const ary = ["文字です", 100, true, new Date];
+ary.push("新しい値");
 
 console.log(ary);
-// => ['文字です', 100, true, new Date, '新しい値']
+// => ["文字です", 100, true, new Date, "新しい値"]
 ```
 
 一番先頭に追加する場合には `unshift` を使います。
 ```js
-const ary = ['文字です', 100, true, new Date];
-ary.unshift('新しい値');
+const ary = ["文字です", 100, true, new Date];
+ary.unshift("新しい値");
 
 console.log(ary);
-// => ['新しい値', '文字です', 100, true, new Date]
+// => ["新しい値", "文字です", 100, true, new Date]
 ```
 
 ### 配列から値を削除する
 既存の配列から値を削除する際には pop メソッドを使います。 pop メソッドは最後の要素を削除します。
 
 ```js
-const ary = ['文字です', 100, true, new Date];
+const ary = ["文字です", 100, true, new Date];
 ary.pop();
 
 console.log(ary);
-// => ['文字です', 100, true]
+// => ["文字です", 100, true]
 ```
 
 一番先頭の要素を削除する場合には shift を使います。
 
 ```js
-const ary = ['文字です', 100, true, new Date];
+const ary = ["文字です", 100, true, new Date];
 ary.shift();
 
 console.log(ary);
@@ -427,7 +486,7 @@ console.log(ary2);
 配列に含まれている要素へ順番にアクセスしたい場合には `for of` を使う。
 
 ```js
-const ary = ['文字です', 100, true];
+const ary = ["文字です", 100, true];
 for (const val of ary) {
   console.log(val);
 }
@@ -439,7 +498,7 @@ for (const val of ary) {
 逆に添え字にアクセスしたい時には `for in` を使う。
 
 ```js
-const ary = ['文字です', 100, true];
+const ary = ["文字です", 100, true];
 for (const val in ary) {
   console.log(val);
 }
