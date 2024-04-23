@@ -6,7 +6,7 @@ sidebar_position: 12
 ## Reactプロジェクトを始める
 ### Next.jsで始める
 Next.js はフルスタックの React フレームワークです。ほぼ静的なブログサイトから複雑でダイナミックなアプリまで、どんな規模の React アプリでも作成できる万能フレームワークです。Next.js プロジェクトを新規に作るには、ターミナルで次のコマンドを実行してください。  
-※Next.js を初めて使う場合は、[Next.js チュートリアル](https://nextjs.org/learn/foundations/about-nextjs)を参照してください。
+※Next.js を初めてのかたは、[Next.jsの公式ドキュメント](https://nextjs.org/docs)を参照してください。
 
 ```sh
 npx create-next-app
@@ -60,7 +60,7 @@ PS C:\Users\ka-horikawa\Documents\Visual Studio Code>
 ## Next.jsの構成
 `create-next-app`で作成した`Next.js`アプリのディレクトリ構成は次のような感じになっています。  
 
-```
+```title="ディレクトリ構成"
 作成したフォルダ/
   +-- .git/ ... Git リポジトリ
   +-- .next/ ... サーバー実行時に生成される
@@ -90,7 +90,7 @@ PS C:\Users\ka-horikawa\Documents\Visual Studio Code>
 
 `index.js`を以下に書き換えてください。
 
-```js
+```js title="index.js"
 export default function Home() {
   return <h1>Hello Next.js</h1>;
 }
@@ -119,7 +119,7 @@ Webブラウザで`http://localhost:3000/`にアクセスして、次のよう�
 ## 画面の更新
 `index.js`を以下に書き換えてください。
 
-```js
+```js title="index.js"
 import { useState } from 'react';
 
 function Header({ title }) {
