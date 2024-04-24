@@ -3,7 +3,7 @@ tags: [フロントエンド]
 sidebar_position: 12
 ---
 
-## MUI（Material UI）とは？
+## MUI（Material UI）とは
 https://mui.com/
 
 MUIとは、デザイナーやアプリ開発者向けに作られたUIコンポーネントのライブラリ。Webアプリ向けのライブラリであるReactを用いてUIを構築する際にMUIが利用できる。
