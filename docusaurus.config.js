@@ -35,9 +35,16 @@ const config = {
   },
 
   // 検索プラグイン
-  // https://github.com/cmfcmf/docusaurus-search-local/issues/199
-  // バグがありpackage.jsonを修正しているため注意
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
+  plugins: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        // Options here
+        indexDocs: true,
+        language: "ja",
+      },
+    ],
+  ],
 
   presets: [
     [
