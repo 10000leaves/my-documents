@@ -25,20 +25,20 @@ const decrement = () => setCount((prevCount) => prevCount - 1);
 ```
 
 ## setState の引数は 2 種類ある
-###次のステートを直接引数で受け取るインターフェイス
+`useState` の紹介記事の題材でよくサンプルとして提示されるカウンターの `increment` は「直前のカウントに 1 を足す関数」を意味しているはずです。
+ですので、2 つ目の関数インターフェイスに当てはめて `setCount((prev) => prev + 1)` と書くのがベストです。 `decrement` も同様です。
+
+### 次のステートを直接引数で受け取るインターフェイス
 
 ```js
 setState(newState);
 ```
 
-- 直前のステートから新しいステートを計算する関数を引数で受け取るインターフェイス
+### 直前のステートから新しいステートを計算する関数を引数で受け取るインターフェイス
 
 ```js
 setState((prev) => createNewStateFromPrevState(prev));
 ```
-
-`useState` の紹介記事の題材でよくサンプルとして提示されるカウンターの `increment` は「直前のカウントに 1 を足す関数」を意味しているはずです。
-ですので、2 つ目の関数インターフェイスに当てはめて `setCount((prev) => prev + 1)` と書くのがベストです。 `decrement` も同様です。
 
 ## 問題となるケース
 ### 2カウント
@@ -86,10 +86,13 @@ export default function App() {
 
 実際に動作させるとどのようになるのでしょうか？
 
-<details><summary>クリックして展開</summary>
+<details>
+<summary>クリックして展開</summary>
+
 差分 2 ずつ変化させるはずが 1 ずつしか変化しません。
 
 `setCount` に同じ値を繰り返し渡しているだけだからです。
+
 </details>
 
 ### count はあくまで定数
