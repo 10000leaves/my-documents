@@ -101,10 +101,32 @@ const config = {
             label: 'Markdown',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'bootCampSidebar',
-            position: 'left',
+            type: 'dropdown',
             label: 'FrontEnd',
+            position: 'left',
+            items: [
+              {
+                type: 'doc',
+                docId: 'フロントエンドブートキャンプ/リファレンス',
+                label: 'リファレンス',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'basicsSidebar',
+                label: '基礎編',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'advancedSidebar',
+                label: '応用編',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'exSidebar',
+                label: 'EX編',
+              },
+              // ... more items
+            ],
           },
           {
             type: 'docSidebar',
