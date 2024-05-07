@@ -1,6 +1,6 @@
 ---
 tags: [フロントエンド]
-sidebar_position: 16
+sidebar_position: 23
 ---
 
 Cypressはメジャーアップデートが多く、記載している内容が参考にならない可能性が大きいため、詳しいことは公式を見て欲しい。

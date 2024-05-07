@@ -23,7 +23,7 @@ Webサイトやアプリケーションにおいては、ユーザーが操作�
 
 ## ReactとVue.jsの違い
 ReactとVue.jsの両方とも、基本的なWebアプリケーション開発に必要な機能は揃っています。  
-人気度でいえば、Next.jsが圧倒的です。  
+人気度でいえば、Reactが圧倒的です。  
 
 ![](./ReactとVue/reactvsvue.png)
 
