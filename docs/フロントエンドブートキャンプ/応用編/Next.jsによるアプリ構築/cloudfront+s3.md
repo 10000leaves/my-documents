@@ -116,3 +116,45 @@ Static webhosting is disabled for the hosting bucket when CloudFront Distributio
 You can now publish your app using the following command:
 Command: amplify publish
 ```
+
+このまま`publish`すると以下のようなエラーになる。  
+`default`のビルド先は`build`のようなので、`.next"`に修正する。  
+
+```
+Publish started for S3AndCloudFront
+
+Cannot find the distribution folder.
+Distribution folder is currently set as:
+  /home/ec2-user/environment/frontend/build
+
+🛑 Cannot find the distribution folder.
+
+Resolution: Please report this issue at https://github.com/aws-amplify/amplify-cli/issues and include the project identifier from: 'amplify diagnose --send-report'
+Learn more at: https://docs.amplify.aws/cli/project/troubleshooting/
+```
+
+対象は以下のファイルで、`DistributionDir`を修正する。
+
+```json title="frontend/amplify/.config/project-config.json"
+{
+  "projectName": "irSearch",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": ".next",
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script start"
+    }
+  },
+  "providers": ["awscloudformation"]
+}
+```
+
+これで公開できるはず。
+
+```
+npx amplify publish
+```
