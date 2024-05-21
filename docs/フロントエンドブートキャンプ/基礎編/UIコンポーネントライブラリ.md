@@ -17,19 +17,19 @@ UIコンポーネントライブラリは、ボタン、入力フィールド、
 ## 主なUIコンポーネントライブラリ
 ### React向け:
 
-Material-UI (MUI): GoogleのMaterial Designガイドラインに基づくコンポーネントライブラリ。
-Ant Design: Alibabaによって開発された、企業アプリケーション向けのデザインシステム。
-Chakra UI: 直感的で柔軟なReactコンポーネントライブラリ。
+- Material-UI (MUI): GoogleのMaterial Designガイドラインに基づくコンポーネントライブラリ。
+- Ant Design: Alibabaによって開発された、企業アプリケーション向けのデザインシステム。
+- Chakra UI: 直感的で柔軟なReactコンポーネントライブラリ。
 
 ### Vue.js向け:
 
-Vuetify: Material Designに基づくVue.js用のコンポーネントフレームワーク。
-Element UI: 鮮やかでエレガントなデザインのためのコンポーネントライブラリ。
+- Vuetify: Material Designに基づくVue.js用のコンポーネントフレームワーク。
+- Element UI: 鮮やかでエレガントなデザインのためのコンポーネントライブラリ。
 
 ### その他のフレームワーク向け:
 
-Bootstrap: 最も広く使用されているフロントエンドコンポーネントライブラリ。特にHTML、CSS、JavaScriptに対応。
-Fluent: Microsoftによって開発された、クロスプラットフォームかつオープンソースのデザインツール。
+- Bootstrap: 最も広く使用されているフロントエンドコンポーネントライブラリ。特にHTML、CSS、JavaScriptに対応。
+- Fluent: Microsoftによって開発された、クロスプラットフォームかつオープンソースのデザインツール。
 
 ## 選定基準
 UIコンポーネントライブラリを選ぶ際の基準は以下の通りです。
