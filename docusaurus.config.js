@@ -185,7 +185,16 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
+      // mermaidについて追記
+      mermaid: {
+        theme: {light: 'neutral', dark: 'forest'},
+      },
     }),
+  // mermaidについて追記
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 };
 
 export default config;
