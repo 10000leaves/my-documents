@@ -1,6 +1,6 @@
 ---
 tags: [フロントエンド]
-sidebar_position: 23
+sidebar_position: 3
 ---
 
 Cypressはメジャーアップデートが多く、記載している内容が参考にならない可能性が大きいため、詳しいことは公式を見て欲しい。
@@ -23,8 +23,65 @@ Cypress はフロントエンドの自動テストツールであり、以下の
 - デバッグ可能：開発ツールから直接デバッグすることができる。
 - 自動待機：要素が見つからない場合に自動で再試行する機能がある。
 
-## テストの実行方法
+## インストール方法
+### インストール
+[公式Docs](https://docs.cypress.io/guides/getting-started/installing-cypress)に従ってインストール。
+
+```sh
+npm install cypress
+```
+
+これにより、プロジェクトの依存関係に Cypress がインストールされる。
+
+### テストの実行方法
 Cypress はテストを`GUI`か`console`で、選んで行うことができる。
+
+コマンドの詳細は以下  
+https://docs.cypress.io/guides/guides/command-line
+
+### GUI
+`npx`で実行する場合は以下
+```sh
+# cypress open
+npx cypress open
+```
+
+`npm`で実行する場合は以下
+
+`npm Scripts`を追記
+```json title="package.json"
+{
+  "scripts": {
+    "cy:open": "cypress open"
+  }
+}
+```
+
+```sh
+npm run cy:open
+```
+
+### console
+`npx`で実行する場合は以下
+```
+# cypress run
+npx cypress run
+```
+
+`npm`で実行する場合は以下
+
+`npm Scripts`を追記
+```json title="package.json"
+{
+  "scripts": {
+    "cy:run": "cypress run"
+  }
+}
+```
+
+```sh
+npm run cy:run
+```
 
 ## 主なコマンド
 CypressにはWeb サイトを操作するためのコマンドが複数ある。
