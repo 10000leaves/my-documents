@@ -183,7 +183,7 @@ sidebar_position: 4
   git revert commit_hash
   ```
 
-### デバック
+## デバック
 - bisect: バイナリ検索を使ってバグを特定します。
   ```sh
   git bisect start
