@@ -3,7 +3,7 @@ tags: [Git, GitHub, GitLab]
 sidebar_position: 4
 ---
 
-### Setup and Config
+## 初期設定
 - git: メインのGitコマンド。各種サブコマンドを実行するために使います。
 - config: Gitの設定を管理します。ユーザー名やメールアドレスの設定などを行います。
   ```sh
@@ -18,7 +18,7 @@ sidebar_position: 4
 - bugreport: Gitのバグを報告するためのコマンドです。
 - Credential helpers: 認証情報を管理するためのヘルパーです。たとえば、パスワードをキャッシュしたり、キーリングに保存したりします。
 
-### Getting and Creating Projects
+## リポジトリの作成
 - init: 新しいGitリポジトリを作成します。
   ```sh
   git init
@@ -28,7 +28,7 @@ sidebar_position: 4
   git clone https://github.com/user/repo.git
   ```
 
-### Basic Snapshotting
+## 基本操作
 - add: ファイルをインデックスに追加します（次のコミットに含めるため）。
   ```sh
   git add file.txt
@@ -66,7 +66,7 @@ sidebar_position: 4
   git mv oldname.txt newname.txt
   ```
 
-### Branching and Merging
+## ブランチの操作とマージ
 - branch: ブランチを作成、リスト、削除します。
   ```sh
   git branch
@@ -105,7 +105,7 @@ sidebar_position: 4
   git worktree add ../path/to/new-worktree
   ```
 
-### Sharing and Updating Projects
+## リポジトリの更新
 - fetch: リモートリポジトリから変更を取得しますが、ワーキングツリーには反映しません。
   ```sh
   git fetch origin
@@ -127,7 +127,7 @@ sidebar_position: 4
   git submodule add https://github.com/user/submodule-repo.git
   ```
 
-### Inspection and Comparison
+## ログの確認と比較
 - show: オブジェクト（コミット、ツリー、タグなど）を表示します。
   ```sh
   git show
@@ -162,7 +162,7 @@ sidebar_position: 4
   git describe
   ```
 
-### Patching
+## パッチ
 - apply: パッチを適用します。
   ```sh
   git apply patch.diff
@@ -171,11 +171,6 @@ sidebar_position: 4
 - cherry-pick: 特定のコミットを別のブランチに適用します。
   ```sh
   git cherry-pick commit_hash
-  ```
-
-- diff: 差分を表示します。
-  ```sh
-  git diff
   ```
 
 - rebase: ブランチのベースを変更します。
@@ -188,7 +183,7 @@ sidebar_position: 4
   git revert commit_hash
   ```
 
-### Debugging
+### デバック
 - bisect: バイナリ検索を使ってバグを特定します。
   ```sh
   git bisect start

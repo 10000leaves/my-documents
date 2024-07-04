@@ -3,12 +3,14 @@ tags: [Git, GitHub, GitLab]
 sidebar_position: 5
 ---
 
+## 初期設定
 - 初期設定を行う
   ```sh
   git config --global user.name "Your Name"
   git config --global user.email "your.email@example.com"
   ```
 
+## リポジトリの作成とプッシュ
 - ローカルにリポジトリを作成し、リモートにプッシュする
   ```sh
   git init
@@ -18,6 +20,7 @@ sidebar_position: 5
   git push -u origin main
   ```
 
+## リモートからのクローンと変更の取得
 - リモートからクローンする
   ```sh
   git clone https://github.com/user/repo.git
@@ -35,6 +38,7 @@ sidebar_position: 5
   git merge origin/master
   ```
 
+## ファイルの登録とコミット
 - ファイルの登録（ステージング）
   ```sh
   git add <ファイル名>
@@ -45,6 +49,7 @@ sidebar_position: 5
   git commit -m "コミットメッセージ"
   ```
 
+## 変更の確認と差分の抽出
 - ローカルの変更を確認する
   ```sh
   git status
@@ -55,6 +60,7 @@ sidebar_position: 5
   git diff <ファイル名>
   ```
 
+## コミットの履歴と変更点の確認
 - commitの変更履歴をみる
   ```sh
   git log
@@ -65,11 +71,13 @@ sidebar_position: 5
   git show <コミットのハッシュ値>
   ```
 
+## リモートへのプッシュ
 - リモートにプッシュ
   ```sh
   git push origin <ブランチ名>
   ```
 
+## addとcommitの取り消し
 - addの取り消し
   ```sh
   git reset HEAD <ファイル名>
@@ -84,6 +92,7 @@ sidebar_position: 5
   - `HEAD^`: 直前のコミット
   - `HEAD~{n}`: n個前のコミット
 
+## commitの打ち消しとメッセージの修正
 - commitの打ち消し
   ```sh
   git revert <コミットのハッシュ値>
@@ -94,12 +103,14 @@ sidebar_position: 5
   git commit --amend "新しいコミットメッセージ"
   ```
 
+## pushの取り消し
 - pushの取り消し
   ```sh
   git reset --hard <戻したいコミットのハッシュ値>
   git push -f
   ```
 
+## ブランチの作成、切り替え、名前変更、削除
 - ローカルでブランチを作成
   ```sh
   git branch <ブランチ名>
@@ -124,6 +135,7 @@ sidebar_position: 5
   git branch -d <ブランチ名>
   ```
 
+## ブランチのリモートへの反映とローカルへの取得
 - ローカルのブランチをリモートに反映
   ```sh
   git push -u origin <ローカルのブランチ名>
@@ -139,6 +151,7 @@ sidebar_position: 5
   git checkout -b <ブランチ名> origin/<ブランチ名>
   ```
 
+## ブランチの確認と比較
 - 全てのブランチを確認する
   ```sh
   git branch -a
@@ -149,6 +162,7 @@ sidebar_position: 5
   git diff <ブランチ名> <ブランチ名>
   ```
 
+## ブランチのマージとリベース
 - ブランチをマージする
   ```sh
   git merge <ブランチ名>
@@ -167,6 +181,7 @@ sidebar_position: 5
   - `merge`: 分岐元のブランチで実行
   - `rebase`: 分岐先のブランチで実行
 
+## 変更点の退避と復元
 - 変更点を一旦退避させる
   ```sh
   git stash save
@@ -192,6 +207,7 @@ sidebar_position: 5
   git stash clear
   ```
 
+## ファイルの削除とリネーム
 - ファイル削除
   ```sh
   git rm -f <ファイル名>
@@ -202,6 +218,7 @@ sidebar_position: 5
   git mv <元のファイル名> <変えたいファイル名>
   ```
 
+## ファイルの状態の戻し
 - ファイルを最新のコミットの状態に戻す
   ```sh
   git checkout HEAD <ファイル名>
@@ -212,6 +229,7 @@ sidebar_position: 5
   git checkout <コミットのハッシュ値> <ファイル名>
   ```
 
+## .gitignoreの無視とディレクトリの登録
 - .gitignore を無視して追加する
   ```sh
   git add -f <ファイル名>
