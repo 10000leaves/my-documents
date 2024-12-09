@@ -9,9 +9,9 @@ npm install recoil
 ```
 
 ## Recoil の設定
-Recoilを使うためには一番トップのコンポーネントに`RecoilRoot`というコンポーネントでラップする必要がある
+Recoilを使うためには一番トップのコンポーネントに`RecoilRoot`というコンポーネントでラップする必要がある。
 
-`layout.tsx`に`'use client'`をつけて、クライアントコンポーネントにすると`App Router`のメリットが得られなくなるため、`Composition`を利用する
+`layout.tsx`に`'use client'`をつけて、クライアントコンポーネントにすると`App Router`のメリットが得られなくなるため、`Composition`を利用する。
 
 ```ts title="src/app/recoilProvider.tsx"
 'use client'
@@ -137,10 +137,3 @@ export const Hoge: React.FC = () => {
   );
 };
 ```
-
-## 参考
-
-- https://maasaablog.com/blog/x82_zhcif/
-- https://blog.to-ko-s.com/nextjs-pages-router-to-app-router/#i-7\
-- https://zenn.dev/neco3coffee/articles/f942c678ada4a5  
-- https://zenn.dev/kakio/articles/efa806b7ad834a#%E5%95%8F%E9%A1%8C%E6%84%8F%E8%AD%98
