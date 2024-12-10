@@ -18,6 +18,21 @@ sidebar_position: 12
 ## 実装
 
 ### APIの実装
+APIが返す型（スキーマ）を定義
+```tsx title="src/app/api/object/schema.ts"
+import { z } from 'zod';
+
+// 回答させたいスキーマを定義
+export const profileSchema = z
+  .object({
+    name: z.string().describe('名前'),
+    age: z.number().describe('年齢'),
+    isAccount: z.string().describe('証券口座を開設しているか、していないか'),
+    description: z.string().describe('詳細なプロフィール'),
+    problem: z.string().describe('抱えている課題'),
+  });
+```
+
 このAPIの役割は以下です。
 
 - クライアントからのプロンプトを受信
@@ -27,7 +42,7 @@ sidebar_position: 12
 ```tsx title="src/app/api/object/route.ts"
 import { createAmazonBedrock } from '@ai-sdk/amazon-bedrock';
 import { streamObject } from 'ai';
-import { z } from 'zod';
+import { profileSchema } from './schema';
 
 export const runtime = 'edge';
 
@@ -37,21 +52,13 @@ const bedrock = createAmazonBedrock({
   secretAccessKey: process.env.NEXT_AWS_BEDROCK_SECRET_ACCESS_KEY ?? '',
 });
 
-// 回答させたいスキーマを定義
-const originalSchema = z.object({
-  name: z.string(),
-  age: z.number(),
-  hobby: z.string(),
-  description: z.string()
-});
-
 export async function POST(req: Request) {
-  const { prompt } = await req.json();
+  const value = await req.json();
 
   const result = await streamObject({
     model: bedrock('anthropic.claude-3-5-sonnet-20241022-v2:0'),
-    schema: originalSchema,
-    prompt: `以下の人物プロフィールを生成してください：${prompt}`,
+    schema: profileSchema,
+    prompt: `以下の人物プロフィールを生成してください：${value}`,
   });
 
   return result.toTextStreamResponse();
@@ -65,106 +72,98 @@ hooksは用意されていないため、自分で実装します。
 ```tsx title="src/app/object/page.tsx"
 'use client';
 
-import { useState } from 'react';
-
-type Profile = {
-  name: string;
-  age: number;
-  isStudent: boolean;
-  description: string;
-};
+import { experimental_useObject as useObject } from 'ai/react';
+import { profileSchema } from '@/app/api/object/schema';
 
 export default function Page() {
-  const [prompt, setPrompt] = useState('20代の学生');
-  const [result, setResult] = useState<Profile | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const response = await fetch('/api/object', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt }),
-      });
-
-      const reader = response.body?.getReader();
-      if (!reader) return;
-
-      let accumulated = '';
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        
-        accumulated += new TextDecoder().decode(value);
-        try {
-          // 完全なJSONが受信されたら解析
-          const parsed = JSON.parse(accumulated);
-          setResult(parsed);
-        } catch {
-          // JSONの解析に失敗した場合は無視（まだストリーミング中）
-        }
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { object, submit, stop, isLoading, error } = useObject({
+    api: '/api/object',
+    schema: profileSchema,
+  });
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">ペルソナのプロフィール生成</h1>
+      <h1 className="text-2xl font-bold mb-6">ペルソナ生成</h1>
 
-      <form onSubmit={handleSubmit} className="mb-6">
+      <div className="mb-6">
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            プロフィールの説明を入力してください
+            作成する人物の説明を入力してください
           </label>
           <input
             type="text"
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
+            defaultValue="20代の飲食業の会社員"
             className="w-full p-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="例: 20代の学生"
+            placeholder="例: 20代の飲食業の会社員"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                submit(e.currentTarget.value);
+              }
+            }}
           />
         </div>
-        <button
-          type="submit"
-          disabled={isLoading}
-          className={`w-full p-3 rounded-lg text-white font-medium transition-colors ${
-            isLoading 
-              ? 'bg-gray-400 cursor-not-allowed' 
-              : 'bg-blue-500 hover:bg-blue-600'
-          }`}
-        >
-          {isLoading ? '生成中...' : 'プロフィールを生成'}
-        </button>
-      </form>
+        <div className="flex gap-2">
+          <button
+            onClick={(e) => {
+              const input = e.currentTarget.parentElement?.previousElementSibling?.querySelector('input');
+              if (input) {
+                submit(input.value);
+              }
+            }}
+            disabled={isLoading}
+            className={`flex-1 p-3 rounded-lg text-white font-medium transition-colors ${
+              isLoading 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-blue-500 hover:bg-blue-600'
+            }`}
+          >
+            {isLoading ? '生成中...' : 'ペルソナを生成'}
+          </button>
+          {isLoading && (
+            <button
+              onClick={() => stop()}
+              className="p-3 rounded-lg border border-gray-300 hover:bg-gray-50"
+            >
+              停止
+            </button>
+          )}
+        </div>
+      </div>
 
-      {result && (
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-600">
+          エラーが発生しました: {error.message}
+        </div>
+      )}
+
+      {object && (
         <div className="border rounded-lg overflow-hidden">
           <div className="bg-gray-50 px-4 py-2 border-b">
-            <h2 className="font-medium">生成されたプロフィール</h2>
+            <h2 className="font-medium">生成されたペルソナ</h2>
           </div>
           <div className="p-4 space-y-3">
             <div className="grid grid-cols-3 gap-2">
               <div className="text-gray-600">名前:</div>
-              <div className="col-span-2 font-medium">{result.name}</div>
+              <div className="col-span-2 font-medium">{object.name}</div>
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="text-gray-600">年齢:</div>
-              <div className="col-span-2 font-medium">{result.age}歳</div>
+              <div className="col-span-2 font-medium">{object.age}歳</div>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              <div className="text-gray-600">学生:</div>
+              <div className="text-gray-600">証券口座:</div>
               <div className="col-span-2 font-medium">
-                {result.isStudent ? 'はい' : 'いいえ'}
+                {object.isAccount ? '開設済み' : '未開設'}
               </div>
             </div>
             <div className="grid grid-cols-3 gap-2">
               <div className="text-gray-600">説明:</div>
-              <div className="col-span-2 font-medium">{result.description}</div>
+              <div className="col-span-2 font-medium">{object.description}</div>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="text-gray-600">課題:</div>
+              <div className="col-span-2 font-medium">{object.problem}</div>
             </div>
           </div>
         </div>
