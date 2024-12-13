@@ -3,6 +3,10 @@ tags: [フロントエンド]
 sidebar_position: 23
 ---
 
+最近更新が行われておらず、React 19に対応していないため死亡
+
+悲しいね
+
 ## Recoilとは
 Recoilは、Facebookが開発したReact向けの状態管理ライブラリ。ReduxやMobXなどの他の状態管理ライブラリと比較して、より簡単に実装でき、Reactの機能との親和性が高いのが特徴。
 
