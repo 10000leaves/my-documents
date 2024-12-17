@@ -34,9 +34,8 @@ yarn add jotai
 ### atomの書き換え
 `import`をRecoilの`atom`からJotaiの`atom`にする。 
 
-Jotai におけるグローバルステートは Atom で管理するので、`○○State` ではなく `○○Atom` とするのが流儀っぽい。面倒くさいので時間があるときに行う。
-
-Atom が定義以外は、基本的に置換で行けそう。
+Jotai におけるグローバルステートは Atom で管理するので、`○○State` ではなく `○○Atom` とするのが流儀っぽい。
+`key`などの書き換えなど、けっこう面倒くさい。
 
 ```ts 
 // Recoil
