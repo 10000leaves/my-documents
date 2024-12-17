@@ -124,6 +124,79 @@ const userAtom = atom(async () => {
 })
 ```
 
+## Store / Provider
+### 概要
+Store は Atom の値を格納するオブジェクトで、Provider は内部に Store を保持して自身の子コンポーネントに提供します。Provider は内部で自動的に Store を作成しますが props 経由で Store を渡すこともできます。
+
+### Store の作成
+Store は createStore 関数で作成することができます。
+
+```js
+import { createStore, Provider } from 'jotai'
+
+const store = createStore()
+
+const Example = () => (
+  <>
+    {/* 自動生成される内部の Store を利用 */}
+    <Provider><Counter /></Provider>
+    {/* 外部から Store を提供 */}
+    <Provider store={store}><Counter /></Provider>
+  </>
+)
+```
+
+### Provider と Store の主な利用用途
+- Context のようにツリー毎に異なる状態を保持したい
+- Atom に動的な初期値を設定したい
+- コンポーネントの unmount により Atom をクリアしたい
+
+### Store オブジェクトのメソッド
+- get
+  - atom config を引数に渡すとその Atom の値を取得できます
+- set
+  - 第一引数に atom config、第二引数に更新内容を指定して値を更新します
+  - 値の更新内容の指定は useState と同じ値もしくは関数です
+- sub
+  - いわゆる購読処理を登録するための関数です
+  - 第一引数に atom config、第二引数に更新があった時に実行される関数を指定します
+  - 戻り値は呼び出すと購読処理を解除する関数です
+
+```js
+import { atom, createStore } from 'jotai'
+
+const countAtom = atom(0)
+
+const store = createStore()
+// 取得
+store.get(countAtom) // 0
+// 更新
+store.set(countAtom, 1)
+store.set(countAtom, (prev) => prev + 1)
+// 購読
+const unsub = store.sub(countAtom, () => console.log(store.get(countAtom)))
+unsub()
+```
+
+### デフォルト Store
+プロバイダーレスモードの時に使用される jotai が内部で作成する Store は getDefaultStore 関数で取得できます。
+
+```js
+import { getDefaultStore } from 'jotai'
+const defaultStore = getDefaultStore() 
+```
+
+### useStore
+直近の親コンポーネントが保持している Store は useStore で取得できます。
+
+```js 
+import { useStore } from 'jotai'
+
+const Example = () => {
+  const store = useStore()
+}
+```
+
 ## ベストプラクティス
 - アトミックな設計
 - 状態を適切な粒度で分割する
