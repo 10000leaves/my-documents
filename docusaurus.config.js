@@ -130,6 +130,12 @@ const config = {
           },
           {
             type: 'docSidebar',
+            sidebarId: 'mobileSidebar',
+            position: 'left',
+            label: 'Mobile',
+          },
+          {
+            type: 'docSidebar',
             sidebarId: 'web3Sidebar',
             position: 'left',
             label: 'Web3',
